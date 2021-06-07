@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Drum Kit</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="keys">
+        <div class="key" key-data="65">
+            <kbd>A</kbd>
+            <span>BEll</span>
+        </div>
+        <div class="key" data-key="83">
+            <kbd>S</kbd>
+            <span>BREAK</span>
+        </div>
+        <div class="key" data-key="68">
+            <kbd>D</kbd>
+            <span>CLaP</span>
+        </div>
+        <div class="key" data-key="70">
+            <kbd>F</kbd>
+            <span>CLoSE</span>
+        </div>
+        <div class="key" data-key="71">
+            <kbd>G</kbd>
+            <span>FALL</span>
+        </div>
+        <div class="key" data-key="72">
+            <kbd>H</kbd>
+            <span>GAME</span>
+        </div>
+        <div class="key" data-key="74">
+            <kbd>J</kbd>
+            <span>LoSE</span>
+        </div>
+        <div class="key" data-key="75">
+            <kbd>K</kbd>
+            <span>PiANo</span>
+        </div>
+        <div class="key" data-key="76">
+            <kbd>L</kbd>
+            <span>WAR</span>
+        </div>
+    </div>
+    <audio data-key="65" src="./sounds/mixkit-bell.wav"></audio>
+    <audio data-key="83" src="./sounds/mixkit-break.wav"></audio>
+    <audio data-key="68" src="./sounds/mixkit-clap.wav"></audio>
+    <audio data-key="70" src="./sounds/mixkit-close.wav"></audio>
+    <audio data-key="71" src="./sounds/mixkit-fall.wav"></audio>
+    <audio data-key="72" src="./sounds/mixkit-game.wav"></audio>
+    <audio data-key="74" src="./sounds/mixkit-lose.wav"></audio>
+    <audio data-key="75" src="./sounds/mixkit-piano.wav"></audio>
+    <audio data-key="76" src="./sounds/mixkit-war.wav"></audio>
+
+    <script>
+        window.addEventListener("keydown", (e) => {
+            var audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+            var key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
+            if (audio) {
+                audio.play()
+                audio.currentTime = 0
+                key.classList.add("playing")
+            }
+            return
+        })
+        var kk = document.querySelectorAll(".key")
+        kk.forEach((e) => {
+            e.addEventListener('transitionend', remove)
+        })
+        function remove(k) {
+            if (k.propertyName = "transform") {
+                this.classList.remove("playing")
+            }
+            return
+        }
+    </script>
+</body>
+
+</html>
